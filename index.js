@@ -18,48 +18,49 @@ client.on("message", async (message) => {
 
   if (command === "shoe") {
     try {
-      let shoe = await stockx.newSearchProducts(args.join(" "), {
+      let response = await stockx.newSearchProducts(args.join(" "), {
         limit: 1,
       });
 
-      const embed = new Discord.MessageEmbed()
+      let item = response[0];
+
+      let embed = new Discord.MessageEmbed()
         .setColor("#FF8C61")
-        .setThumbnail(shoe[0].thumbnail_url)
+        .setThumbnail(item.thumbnail_url)
         .setAuthor(
-          shoe[0].name,
-          shoe[0].thumbnail_url,
-          `https://stockx.com/${shoe[0].url}`
+          item.name,
+          item.thumbnail_url,
+          `https://stockx.com/${item.url}`
         )
         .addFields(
-          { name: "Company", value: shoe[0].brand, inline: true },
+          { name: "Company", value: item.brand, inline: true },
           {
             name: "Released date",
             value: new Intl.DateTimeFormat("en-US", {
               dateStyle: "full",
-            }).format(new Date(shoe[0].release_date)),
+            }).format(new Date(item.release_date)),
             inline: true,
           },
           {
             name: "Category",
-            value: shoe[0]._highlightResult?.product_category?.value,
+            value: item._highlightResult?.product_category?.value,
             inline: true,
           },
-          { name: "Retail price", value: `${shoe[0].price} USD`, inline: true },
+          { name: "Retail price", value: `${item.price} USD`, inline: true },
           {
             name: "Highest bid",
-            value: `${shoe[0].highest_bid} USD`,
+            value: `${item.highest_bid} USD`,
             inline: true,
           },
           {
             name: "Lowest ask",
-            value: `${shoe[0].lowest_ask} USD`,
+            value: `${item.lowest_ask} USD`,
             inline: true,
           },
-          { name: "Description", value: shoe[0].description }
+          { name: "Description", value: item.description }
         )
         .setTimestamp();
       message.channel.send(embed);
-      console.log(shoe[0]);
     } catch (error) {
       if (error.message === "No products found") {
         return message.channel.send(
