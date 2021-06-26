@@ -16,6 +16,8 @@ client.on("message", async (message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
+  let embed = new Discord.MessageEmbed().setColor("#FF8C61").setTimestamp();
+
   if (command === "item") {
     try {
       let response = await stockx.newSearchProducts(args.join(" "), {
@@ -24,8 +26,7 @@ client.on("message", async (message) => {
 
       let item = response[0];
 
-      let embed = new Discord.MessageEmbed()
-        .setColor("#FF8C61")
+      embed
         .setThumbnail(item.thumbnail_url)
         .setAuthor(
           item.name,
@@ -56,22 +57,30 @@ client.on("message", async (message) => {
             name: "Lowest ask",
             value: `${item.lowest_ask} USD`,
             inline: true,
-          },
-          { name: "Description", value: item.description }
-        )
-        .setTimestamp();
+          }
+          /*{ name: "Description", value: item.description }*/
+        );
       message.channel.send(embed);
     } catch (error) {
       if (error.message === "No products found") {
         return message.channel.send(
-          "Could not find shoe, please check spelling."
+          "Could not find item, please check spelling."
         );
       }
       message.channel.send(
-        "There was an error fetching the shoe data, try again in a few minutes."
+        "There was an error fetching the item data, try again in a few minutes."
       );
+      console.log(error);
     }
-    i;
+  } else if (command === "help") {
+    embed
+      .setAuthor("Commands")
+      .addFields(
+        { name: "prefix", value: prefix },
+        { name: "item <item name>", value: "Search for an item by name" },
+        { name: "help", value: "Show a list of the current commands" }
+      );
+    message.channel.send(embed);
   }
 });
 
