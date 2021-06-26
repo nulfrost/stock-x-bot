@@ -16,7 +16,7 @@ client.on("message", async (message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if (command === "shoe") {
+  if (command === "item") {
     try {
       let response = await stockx.newSearchProducts(args.join(" "), {
         limit: 1,
@@ -35,7 +35,7 @@ client.on("message", async (message) => {
         .addFields(
           { name: "Company", value: item.brand, inline: true },
           {
-            name: "Released date",
+            name: "Release date",
             value: new Intl.DateTimeFormat("en-US", {
               dateStyle: "full",
             }).format(new Date(item.release_date)),
