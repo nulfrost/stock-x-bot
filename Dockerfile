@@ -1,9 +1,6 @@
-FROM node:14-alpine3.13 AS base
+FROM node:14-alpine3.13
 WORKDIR /app
 COPY package*.json .
-COPY . .
 RUN npm install
-
-FROM node:alpine
-COPY --from=base /app /app
+COPY . .
 CMD ["node", "index.js"]

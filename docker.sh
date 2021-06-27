@@ -6,3 +6,5 @@ LATEST=$NAME:latest
 # Build image
 docker build -t $IMAGE .
 
+# Tag image
+docker tag $IMAGE $LATEST
