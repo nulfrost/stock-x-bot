@@ -57,8 +57,15 @@ client.on("message", async (message) => {
             name: "Lowest ask",
             value: `${item.lowest_ask} USD`,
             inline: true,
+          },
+          {
+            name: "Description",
+            value: item.description
+              .split(".")
+              .splice(0, 3)
+              .map((sentence) => `${sentence}.`)
+              .join(""),
           }
-          /*{ name: "Description", value: item.description }*/
         );
       message.channel.send(embed);
     } catch (error) {
