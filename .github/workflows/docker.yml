@@ -1,6 +1,9 @@
-name: Build docker image
+name: Build and push docker image
 
-on: [push]
+on:
+  push:
+    branches:
+      - "main"
 
 jobs:
   build:
