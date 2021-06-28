@@ -80,7 +80,6 @@ client.on("message", async (message) => {
       message.channel.send(
         "There was an error fetching the item data, try again in a few minutes."
       );
-      console.log(error);
     }
   } else if (command === "help") {
     embed

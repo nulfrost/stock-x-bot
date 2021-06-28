@@ -1,5 +1,8 @@
 .gitignore
 docker.sh
-node_modules/
 .git
 *Dockerfile*
+.env*
+.github
+.dockerignore
+README.md
