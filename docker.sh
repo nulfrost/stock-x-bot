@@ -8,3 +8,6 @@ docker build -t $IMAGE .
 
 # Tag image
 docker tag $IMAGE $LATEST
+
+# Push image
+docker push $LATEST
