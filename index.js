@@ -6,7 +6,10 @@ require("dotenv").config();
 const prefix = "%";
 const stockx = new StockXAPI();
 
-client.once("ready", () => {
+client.once("ready", async () => {
+  await client.user.setActivity(
+    `Serving ${client.guilds.cache.size} hypebeasts`
+  );
   console.log(`${client.user.tag} started running on ${new Date()}`);
 });
 
