@@ -2,9 +2,16 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const StockXAPI = require("stockx-api");
 require("dotenv").config();
+const AWS = require("aws-sdk");
 
 const prefix = "%";
+const region = "us-east-1";
+const secretName = "stockx-bot-token";
 const stockx = new StockXAPI();
+
+const aws = new AWS.SecretsManager({
+  region: region,
+});
 
 client.once("ready", async () => {
   await client.user.setActivity(
@@ -92,5 +99,13 @@ client.on("message", async (message) => {
     message.channel.send(embed);
   }
 });
+
+if (process.env.NODE_ENV === "production") {
+  aws.getSecretValue({ SecretId: secretName }, function (error, data) {
+    if (error) throw error;
+    let token = JSON.parse(data.SecretString);
+    client.login(token.BOT_TOKEN);
+  });
+}
 
 client.login(process.env.BOT_TOKEN);

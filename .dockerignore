@@ -6,3 +6,4 @@ docker.sh
 .github
 .dockerignore
 README.md
+node_modules/
