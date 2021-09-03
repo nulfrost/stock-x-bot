@@ -9,7 +9,7 @@ hooks:
       runas: root
       timeout: 120
   AfterInstall:
-    - location: scripts/node_deps.sh
+    - location: scripts/deps.sh
       runas: root
       timeout: 120
   ApplicationStart:
