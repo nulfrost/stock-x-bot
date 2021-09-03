@@ -53,7 +53,7 @@ client.on("message", async (message) => {
             inline: true,
           },
           {
-            name: "Category",
+            name: "category",
             value: item._highlightResult?.product_category?.value,
             inline: true,
           },
