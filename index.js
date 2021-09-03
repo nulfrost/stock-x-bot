@@ -4,7 +4,7 @@ const StockXAPI = require("stockx-api");
 require("dotenv").config();
 const AWS = require("aws-sdk");
 
-const prefix = "%";
+const prefix = "!";
 const region = "us-east-1";
 const secretName = "stockx-bot-token";
 const stockx = new StockXAPI();
