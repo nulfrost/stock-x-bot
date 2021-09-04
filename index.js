@@ -7,6 +7,7 @@ const AWS = require("aws-sdk");
 const prefix = "%";
 const region = process.env.AWS_REGION;
 const secretName = process.env.AWS_SECRET_NAME;
+const isDev = process.env.NODE_ENV !== "production";
 const stockx = new StockXAPI();
 
 const aws = new AWS.SecretsManager({
@@ -108,4 +109,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-client.login(process.env.BOT_TOKEN);
+client.login(isDev ? process.env.BOT_TOKEN_DEV : process.env.BOT_TOKEN);
