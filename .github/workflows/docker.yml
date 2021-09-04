@@ -17,5 +17,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push docker image
         run: |
-          chmod +x docker.sh
+          chmod +x ./docker.sh
           ./docker.sh
