@@ -15,6 +15,6 @@ module.exports = {
         { name: "item <item name>", value: "Search for an item by name" },
         { name: "help", value: "Show a list of the current commands" }
       );
-    await interaction.reply(embed);
+    await interaction.reply({ embeds: [embed] });
   },
 };
