@@ -1,17 +1,24 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { MessageEmbed } from "discord.js";
-import { BaseCommandInteraction } from "discord.js";
+import { CommandInteraction } from "discord.js";
 import StockXAPI from "stockx-api";
 const stockx = new StockXAPI();
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("item")
-    .setDescription("Get info about a product on Stock X"),
-  async execute(interaction: BaseCommandInteraction) {
+    .setDescription("Get info about a product on Stock X")
+    .addStringOption((option) =>
+      option
+        .setName("item")
+        .setDescription("Enter the item you want to search for")
+        .setRequired(true)
+    ),
+  async execute(interaction: CommandInteraction) {
     try {
+      const product = interaction.options.getString("input");
       const embed = new MessageEmbed().setColor("#FF8C61").setTimestamp();
-      let response = await stockx.newSearchProducts("grim reaper", {
+      let response = await stockx.newSearchProducts(product, {
         limit: 1,
       });
 

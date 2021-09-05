@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed, BaseCommandInteraction } from "discord.js";
+import { MessageEmbed, CommandInteraction } from "discord.js";
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -7,7 +7,7 @@ module.exports = {
     .setDescription(
       "Replies with a list of commands that are currently available"
     ),
-  async execute(interaction: BaseCommandInteraction) {
+  async execute(interaction: CommandInteraction) {
     const embed = new MessageEmbed().setColor("#FF8C61").setTimestamp();
     embed
       .setAuthor("Commands")
