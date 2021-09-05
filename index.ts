@@ -1,13 +1,14 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
+const { Client, Intents, Discord } = require("discord.js");
 const StockXAPI = require("stockx-api");
 require("dotenv").config();
 const AWS = require("aws-sdk");
 
-const prefix = "%";
+const prefix = "!";
 const region = "us-east-1";
 const secretName = "stockx-bot-token";
 const stockx = new StockXAPI();
+const isDev = process.env.NODE_ENV !== "production";
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 const aws = new AWS.SecretsManager({
   region: region,
@@ -97,6 +98,16 @@ client.on("message", async (message) => {
         { name: "help", value: "Show a list of the current commands" }
       );
     message.channel.send(embed);
+  }
+});
+
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isCommand()) return;
+
+  const { commandName } = interaction;
+
+  if (commandName === "ping") {
+    await interaction.reply("Pong!");
   }
 });
 
