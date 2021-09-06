@@ -21,7 +21,7 @@ npm install
 
 #### Bot token
 
-You'll need a token for the bot if you want it to run, this [guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot) will walk you through getting a token and inviting the bot to your server.
+You'll need a token and the bot client id for the bot if you want it to run, this [guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot) will walk you through getting a token and inviting the bot to your server. You should also be able to find out where the bot client is while following this guide.
 
 #### Environment Variables
 
@@ -32,6 +32,7 @@ If you plan on extending this bots functionality then you'll need to add two env
 ```bash
 BOT_TOKEN=token for bot that runs in production
 BOT_TOKEN_DEV=token for bot used for development
+BOT_CLIENT_ID=the client id for the bot
 ```
 
 Currently it's set up to where you have a bot running live and out in the world and then a second one that you would use for development.
@@ -42,7 +43,15 @@ If you only care about just running this bot in your server then just add a toke
 
 ## Run Locally
 
-Currently it is set up to fetch environment variables from AWS when running in production mode, to change it so it just reads from you local `.env` file you would need to change these lines.
+#### Personal Use
+
+Currently it is set up to fetch environment variables from AWS when running in production mode, if you just want to run the bot then make sure your BOT_TOKEN environment variable is set and change these lines of code. (Red means remove, green means add.)
+
+```diff
+// index.ts
+- const region = "us-east-1";
+- const secretName = "stockx-bot-token";
+```
 
 ```diff
 // index.ts
@@ -57,3 +66,33 @@ Currently it is set up to fetch environment variables from AWS when running in p
 - client.login(isDev && process.env.BOT_TOKEN_DEV);
 + client.login(process.env.BOT_TOKEN);
 ```
+
+#### Development
+
+If you're interested in developing this bot further then you still wouldn't need to change much, just remove any AWS related code similar to the previous step. If you decide to also stick to the two token method of developing then your log in function would look something like this.
+
+```diff
+- client.login(isDev && process.env.BOT_TOKEN_DEV);
++ client.login(isDev ? process.env.BOT_TOKEN_DEV : process.env.BOT_TOKEN);
+```
+
+This bot uses discords new slash commands, to find out how to add and register new commands refer back to the same guide where you found out how to get a token [here](https://discordjs.guide/creating-your-bot/creating-commands.html#registering-commands).
+
+## Docker
+
+You'll still need to make the changes above but if you wanted your bot to be more portable you could dockerize it.
+
+```bash
+// build the image
+docker build -t <your docker username>/stock-x-bot:latest .
+// run the image
+docker run --name stockxbot --env-file=.env -d <your docker username>/stock-x-bot:latest
+```
+
+## License
+
+[MIT](https://github.com/nulfrost/stock-x-bot/blob/main/LICENSE)
+
+## Authors
+
+- [@nulfrost](https://www.github.com/nulfrost)
