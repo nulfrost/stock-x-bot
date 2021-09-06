@@ -9,4 +9,4 @@ FROM node:16-alpine3.13 AS prod
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=builder ./app ./
-CMD ["node", "src/index.js"]
+CMD ["node", "dist/index.js"]

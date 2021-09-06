@@ -57,4 +57,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-client.login(isDev ? process.env.BOT_TOKEN_DEV : process.env.BOT_TOKEN);
+client.login(isDev && process.env.BOT_TOKEN_DEV);
