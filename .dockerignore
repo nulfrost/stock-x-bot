@@ -7,3 +7,4 @@ docker.sh
 .dockerignore
 README.md
 node_modules/
+.env

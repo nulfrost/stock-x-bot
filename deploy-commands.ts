@@ -3,10 +3,12 @@ import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
 require("dotenv").config();
 
+const isDev = process.env.NODE_ENV !== "production";
+
 const commands = [];
-const commandFiles = fs
-  .readdirSync("./commands")
-  .filter((file) => file.endsWith(".ts") || file.endsWith(".js"));
+const commandFiles = isDev
+  ? fs.readdirSync("./commands").filter((file) => file.endsWith(".ts"))
+  : fs.readdirSync("./commands").filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);

@@ -73,6 +73,8 @@ module.exports = {
         return;
       }
 
+      console.error(error);
+
       await interaction.reply(
         "There was an error fetching the item data, try again in a few minutes."
       );

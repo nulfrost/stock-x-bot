@@ -9,9 +9,9 @@ const isDev = process.env.NODE_ENV !== "production";
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 // @ts-ignore
 client.commands = new Collection();
-const commandFiles = fs
-  .readdirSync("./commands")
-  .filter((file) => file.endsWith(".ts") || file.endsWith(".js"));
+const commandFiles = isDev
+  ? fs.readdirSync("./commands").filter((file) => file.endsWith(".ts"))
+  : fs.readdirSync("./commands").filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
