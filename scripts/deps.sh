@@ -2,4 +2,4 @@
 
 cd /home/ec2-user/app
 
-yarn
+npm i

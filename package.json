@@ -2,12 +2,12 @@
   "name": "stock-x-bot",
   "version": "1.0.0",
   "description": "A discord bot for looking up items on stockx",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon index.ts",
     "build": "tsc",
     "register": "ts-node deploy-commands.ts",
-    "start": "NODE_ENV=production node src/index.js"
+    "start": "NODE_ENV=production node dist/index.js"
   },
   "keywords": [
     "stockx",
