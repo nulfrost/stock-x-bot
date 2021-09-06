@@ -27,7 +27,7 @@ You'll need a token and the bot client id for the bot if you want it to run, thi
 
 Next, you'll need to add environment variables to the `.env.sample` and then rename it to just `.env`.
 
-If you plan on extending this bots functionality then you'll need to add two environment variables to the `.env` file.
+If you plan on extending this bots functionality then you'll need to add two different bot token environment variables to the `.env` file.
 
 ```bash
 BOT_TOKEN=token for bot that runs in production
@@ -39,7 +39,7 @@ Currently it's set up to where you have a bot running live and out in the world 
 
 You can change it as you please if you want to, this is just the way I've set it up.
 
-If you only care about just running this bot in your server then just add a token to BOT_TOKEN, otherwise fill out the environment variables with different bot tokens.
+If you only care about just running this bot in your server then just add a token to BOT_TOKEN, otherwise fill out the environment variables.
 
 ## Run Locally
 
