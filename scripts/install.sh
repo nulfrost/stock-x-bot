@@ -2,6 +2,7 @@
 
 set -e
 
-curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
-yum install -y nodejs
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install node
 npm install -g pm2
