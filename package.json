@@ -7,7 +7,8 @@
     "dev": "nodemon index.ts",
     "build": "tsc",
     "register": "ts-node deploy-commands.ts",
-    "start": "NODE_ENV=production node dist/index.js"
+    "start": "NODE_ENV=production node dist/index.js",
+    "prod": "NODE_ENV=production ts-node index.ts"
   },
   "keywords": [
     "stockx",
