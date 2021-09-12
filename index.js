@@ -7,15 +7,15 @@ const region = "us-east-1";
 const secretName = "stockx-bot-token";
 const isDev = process.env.NODE_ENV !== "production";
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
-// @ts-ignore
+
 client.commands = new Collection();
-const commandFiles = isDev
-  ? fs.readdirSync("./commands").filter((file) => file.endsWith(".ts"))
-  : fs.readdirSync("./commands").filter((file) => file.endsWith(".js"));
+
+const commandFiles = fs
+  .readdirSync("./commands")
+  .filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
-  // @ts-ignore
   client.commands.set(command.data.name, command);
 }
 
@@ -33,7 +33,6 @@ client.once("ready", async () => {
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
-  // @ts-ignore
   const command = client.commands.get(interaction.commandName);
 
   if (!command) return;
