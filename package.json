@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "register": "node deploy-commands.js",
+    "register:dev": "node deploy-commands.js",
+    "register:prod": "NODE_ENV=production node deploy-commands.js",
     "start": "NODE_ENV=production node index.js"
   },
   "keywords": [

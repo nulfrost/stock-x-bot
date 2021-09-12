@@ -1,7 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { MessageEmbed } from "discord.js";
-import { CommandInteraction } from "discord.js";
-import StockXAPI from "stockx-api";
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { MessageEmbed } = require("discord.js");
+const StockXAPI = require("stockx-api");
 const stockx = new StockXAPI();
 
 module.exports = {
@@ -14,7 +13,7 @@ module.exports = {
         .setDescription("Enter the item you want to search for")
         .setRequired(true)
     ),
-  async execute(interaction: CommandInteraction) {
+  async execute(interaction) {
     try {
       const product = interaction.options.getString("input");
       const embed = new MessageEmbed().setColor("#FF8C61").setTimestamp();

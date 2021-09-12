@@ -1,6 +1,6 @@
-import fs from "fs";
-import { Client, Collection, Intents } from "discord.js";
-import AWS from "aws-sdk";
+const fs = require("fs");
+const { Client, Collection, Intents } = require("discord.js");
+const AWS = require("aws-sdk");
 require("dotenv").config();
 
 const region = "us-east-1";

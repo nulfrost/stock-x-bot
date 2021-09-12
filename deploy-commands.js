@@ -1,12 +1,7 @@
-import fs from "fs";
-import { REST } from "@discordjs/rest";
-import { Routes } from "discord-api-types/v9";
-import AWS from "aws-sdk";
+const fs = require("fs");
+const { REST } = require("@discordjs/rest");
+const { Routes } = require("discord-api-types/v9");
 require("dotenv").config();
-
-const aws = new AWS.SecretsManager({
-  region: "us-east-1",
-});
 
 const commands = [];
 const commandFiles = fs
@@ -22,22 +17,26 @@ if (process.env.NODE_ENV !== "production") {
   const rest = new REST({ version: "9" }).setToken(process.env.BOT_TOKEN_DEV);
   (async () => {
     try {
-      await rest.put(Routes.applicationCommands(process.env.BOT_CLIENT_ID), {
-        body: commands,
-      });
+      await rest.put(
+        Routes.applicationCommands(process.env.BOT_CLIENT_ID_DEV),
+        {
+          body: commands,
+        }
+      );
 
       console.log("Successfully registered application commands.");
     } catch (error) {
       console.error(error);
     }
   })();
+  return;
 }
 
-const rest = new REST({ version: "9" }).setToken(process.env.BOT_TOKEN);
+const rest = new REST({ version: "9" }).setToken(process.env.BOT_TOKEN_PROD);
 
 (async () => {
   try {
-    await rest.put(Routes.applicationCommands(process.env.BOT_CLIENT_ID), {
+    await rest.put(Routes.applicationCommands(process.env.BOT_CLIENT_ID_PROD), {
       body: commands,
     });
 
