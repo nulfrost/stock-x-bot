@@ -15,7 +15,7 @@ module.exports = {
     ),
   async execute(interaction) {
     try {
-      const product = interaction.options.getString("input");
+      const product = interaction.options.getString("item");
       const embed = new MessageEmbed().setColor("#FF8C61").setTimestamp();
       let response = await stockx.newSearchProducts(product, {
         limit: 1,

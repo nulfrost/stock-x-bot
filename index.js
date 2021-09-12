@@ -6,7 +6,9 @@ require("dotenv").config();
 const region = "us-east-1";
 const secretName = "stockx-bot-token";
 const isDev = process.env.NODE_ENV !== "production";
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+});
 
 client.commands = new Collection();
 
@@ -54,6 +56,7 @@ if (process.env.NODE_ENV === "production") {
     let token = JSON.parse(data.SecretString);
     client.login(token.BOT_TOKEN);
   });
+  return;
 }
 
 client.login(isDev && process.env.BOT_TOKEN_DEV);
