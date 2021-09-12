@@ -30,9 +30,10 @@ Next, you'll need to add environment variables to the `.env.sample` and then ren
 If you plan on extending this bots functionality then you'll need to add two different bot token environment variables to the `.env` file.
 
 ```bash
-BOT_TOKEN=token for bot that runs in production
-BOT_TOKEN_DEV=token for bot used for development
-BOT_CLIENT_ID=the client id for the bot
+BOT_TOKEN_PROD=
+BOT_CLIENT_ID_PROD=
+BOT_TOKEN_DEV=
+BOT_CLIENT_ID_DEV=
 ```
 
 Currently it's set up to where you have a bot running live and out in the world and then a second one that you would use for development.
