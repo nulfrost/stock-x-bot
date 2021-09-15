@@ -65,7 +65,7 @@ Currently it is set up to fetch environment variables from AWS when running in p
 - }
 
 - client.login(isDev && process.env.BOT_TOKEN_DEV);
-+ client.login(process.env.BOT_TOKEN);
++ client.login(process.env.BOT_TOKEN_PROD);
 ```
 
 #### Development
@@ -74,7 +74,7 @@ If you're interested in developing this bot further then you still wouldn't need
 
 ```diff
 - client.login(isDev && process.env.BOT_TOKEN_DEV);
-+ client.login(isDev ? process.env.BOT_TOKEN_DEV : process.env.BOT_TOKEN);
++ client.login(isDev ? process.env.BOT_TOKEN_DEV : process.env.BOT_TOKEN_PROD);
 ```
 
 This bot uses discords new slash commands, to find out how to add and register new commands refer back to the same guide where you found out how to get a token [here](https://discordjs.guide/creating-your-bot/creating-commands.html#registering-commands).
