@@ -6,7 +6,7 @@ module.exports = {
     .setDescription("Replies with Pong!"),
   async execute(interaction) {
     const sent = await interaction.reply({
-      content: "Pinging...",
+      content: "Pinging..",
       fetchReply: true,
     });
     interaction.editReply(
