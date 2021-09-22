@@ -90,6 +90,11 @@ docker build -t <your docker username>/stock-x-bot:latest .
 docker run --name stockxbot --env-file=.env -d <your docker username>/stock-x-bot:latest
 ```
 
+## Example
+
+https://user-images.githubusercontent.com/16832258/134428538-7d0ff255-6dea-4810-aeb6-c3e44ad0b74b.mov
+
+
 ## License
 
 [MIT](https://github.com/nulfrost/stock-x-bot/blob/main/LICENSE)
